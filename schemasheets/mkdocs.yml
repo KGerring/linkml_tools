@@ -1,0 +1,29 @@
+site_name: "Schemasheets"
+theme:
+  name: mkdocs
+  nav_style: dark
+  analytics:
+    gtag: G-2SYBSJVZ23
+plugins:
+  - search
+nav:
+  - About: index.md
+  - Installation: install.md
+  - Guide:
+      - Basics: intro/basics.md
+      - Converting: intro/converting.md
+      - Prefixes: intro/prefixes.md
+      - Grids: intro/grids.md
+      - Enums: intro/enums.md
+      - Cardinality: intro/cardinality.md
+      - Exporting to schemasheets: intro/export.md      
+  - How to:
+      - Data Dictionaries: howto/data-dictionaries
+      - Working with Google Sheets: howto/google-sheets.md
+      - Working with Excel: howto/excel.md
+  - Specification: specification
+  - Datamodel: datamodel/
+  - FAQ: faq.md
+site_url: https://linkml.github.io/schemasheets/
+repo_url: https://github.com/linkml/schemasheets/
+edit_uri: blob/main/docs/

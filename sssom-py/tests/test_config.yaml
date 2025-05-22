@@ -1,0 +1,69 @@
+tests:
+  - filename: "basic.tsv"
+    inputformat: "tsv"
+    multiple_input: True
+    ct_json_elements: 8
+    ct_data_frame_rows: 141
+    ct_graph_queries_owl:
+      query_count_equivalent_classes: 90
+    ct_graph_queries_rdf:
+      query_count_equivalent_classes: 90
+  - filename: "basic2.tsv"
+    inputformat: "tsv"
+    multiple_input: True
+    ct_json_elements: 8
+    ct_data_frame_rows: 126
+    ct_graph_queries_owl:
+      query_count_equivalent_classes: 79
+    ct_graph_queries_rdf:
+      query_count_equivalent_classes: 79
+  - filename: "cob-to-external.tsv"
+    inputformat: "tsv"
+    multiple_input: False
+    ct_json_elements: 5
+    ct_data_frame_rows: 105
+    ct_graph_queries_owl:
+      query_count_equivalent_classes: 60
+    ct_graph_queries_rdf:
+      query_count_equivalent_classes: 60
+#  - filename: "hp-base.json"
+#    ct_json_elements: 32150
+#    ct_data_frame_rows: 20485
+#    ct_graph_queries_owl:
+#      query_count_equivalent_classes: 0
+#    ct_graph_queries_rdf:
+#      query_count_equivalent_classes: 87
+#      query_count_xrefs: 89
+#    curie_map:
+#      HP: "http://purl.obolibrary.org/obo/HP_"
+#      ORDO: "http://www.orpha.net/ORDO/Orphanet_"
+#      oboInOwl: "http://www.geneontology.org/formats/oboInOwl#"
+  - filename: "oaei-ordo-hp.rdf"
+    inputformat: "alignment-api-xml"
+    multiple_input: False
+    ct_json_elements: 7
+    ct_data_frame_rows: 646
+    ct_graph_queries_owl:
+      query_count_equivalent_classes: 0
+    ct_graph_queries_rdf:
+      query_count_equivalent_classes: 0
+    curie_map:
+      HP: "http://purl.obolibrary.org/obo/HP_"
+      ORDO: "http://www.orpha.net/ORDO/Orphanet_"
+      oboInOwl: "http://www.geneontology.org/formats/oboInOwl#"
+    metadata_file: "oaei-ordo-hp.yaml"
+queries:
+  query_count_equivalent_classes: >
+    SELECT DISTINCT ?e1 ?e2 WHERE {
+    ?ax a owl:Axiom ;
+              owl:annotatedSource ?e1 ;
+              owl:annotatedProperty owl:equivalentClass ;
+              owl:annotatedTarget ?e2 .
+    }
+  query_count_xrefs: >
+    SELECT DISTINCT ?e1 ?e2 WHERE {
+    ?ax a owl:Axiom ;
+              owl:annotatedSource ?e1 ;
+              owl:annotatedProperty <http://www.geneontology.org/formats/oboInOwl#hasDbXref> ;
+              owl:annotatedTarget ?e2 .
+    }

@@ -1,0 +1,127 @@
+# metamodel_version: 1.7.0
+type ExtensionDefinition
+  {
+    slotName: Ncname!
+    property: Uriorcurie
+    typeHint: Uriorcurie
+  }
+
+type Mapping
+  {
+    subjectId: EntityReference
+    subjectLabel: String
+    subjectCategory: String
+    predicateId: EntityReference!
+    predicateLabel: String
+    predicateModifier: PredicateModifierEnum
+    objectId: EntityReference
+    objectLabel: String
+    objectCategory: String
+    mappingJustification: EntityReference!
+    authorId: [EntityReference]
+    authorLabel: [String]
+    reviewerId: [EntityReference]
+    reviewerLabel: [String]
+    creatorId: [EntityReference]
+    creatorLabel: [String]
+    license: Uri
+    subjectType: EntityTypeEnum
+    subjectSource: EntityReference
+    subjectSourceVersion: String
+    objectType: EntityTypeEnum
+    objectSource: EntityReference
+    objectSourceVersion: String
+    mappingProvider: Uri
+    mappingSource: EntityReference
+    mappingCardinality: MappingCardinalityEnum
+    mappingTool: String
+    mappingToolVersion: String
+    mappingDate: Date
+    publicationDate: Date
+    confidence: Double
+    curationRule: [EntityReference]
+    curationRuleText: [String]
+    subjectMatchField: [EntityReference]
+    objectMatchField: [EntityReference]
+    matchString: [String]
+    subjectPreprocessing: [EntityReference]
+    objectPreprocessing: [EntityReference]
+    similarityScore: Double
+    similarityMeasure: String
+    seeAlso: [String]
+    issueTrackerItem: EntityReference
+    other: String
+    comment: String
+  }
+
+type MappingRegistry
+  {
+    mappingRegistryId: EntityReference!
+    mappingRegistryTitle: String
+    mappingRegistryDescription: String
+    imports: [Uri]
+    mappingSetReferences: [MappingSetReference]
+    documentation: Uri
+    homepage: Uri
+    issueTracker: Uri
+  }
+
+type MappingSet
+  {
+    curieMap: [Prefix]
+    mappings: [Mapping]
+    mappingSetId: Uri!
+    mappingSetVersion: String
+    mappingSetSource: [Uri]
+    mappingSetTitle: String
+    mappingSetDescription: String
+    creatorId: [EntityReference]
+    creatorLabel: [String]
+    license: Uri!
+    subjectType: EntityTypeEnum
+    subjectSource: EntityReference
+    subjectSourceVersion: String
+    objectType: EntityTypeEnum
+    objectSource: EntityReference
+    objectSourceVersion: String
+    mappingProvider: Uri
+    mappingTool: String
+    mappingToolVersion: String
+    mappingDate: Date
+    publicationDate: Date
+    subjectMatchField: [EntityReference]
+    objectMatchField: [EntityReference]
+    subjectPreprocessing: [EntityReference]
+    objectPreprocessing: [EntityReference]
+    seeAlso: [String]
+    issueTracker: Uri
+    other: String
+    comment: String
+    extensionDefinitions: [ExtensionDefinition]
+  }
+
+type MappingSetReference
+  {
+    mappingSetId: Uri!
+    mirrorFrom: Uri
+    registryConfidence: Double
+    mappingSetGroup: String
+    lastUpdated: Date
+    localName: String
+  }
+
+type NoTermFound
+  {
+  }
+
+type Prefix
+  {
+    prefixName: Ncname!
+    prefixUrl: Uri
+  }
+
+type Propagatable
+  {
+    propagated: Boolean
+  }
+

@@ -1,0 +1,18 @@
+.DS_Store
+target
+
+examples/output
+
+bin
+
+# open office tmp files
+*#
+
+.idea
+conf/*json
+.cogs
+__pycache__
+tests/output/*yaml
+tests/output/personinfo/
+tests/output/personinfo_autofill/
+tmp

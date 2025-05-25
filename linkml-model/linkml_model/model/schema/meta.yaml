@@ -72,7 +72,6 @@ imports:
   - linkml:mappings
   - linkml:extensions
   - linkml:annotations
-#  - linkml:validation
   - linkml:units
 
 subsets:
@@ -2659,9 +2658,6 @@ classes:
       name:
         range: ncname
         description: a unique name for the schema that is both human-readable and consists of only characters from the NCName set
-#    slot_usage:
-#      description:
-#        slot_uri: dcterms:description
     in_subset:
       - SpecificationSubset
       - MinimalSubset
@@ -3400,3 +3396,14 @@ enums:
           The metadata element is allowed but discouraged to be present in the model
     in_subset:
       - SpecificationSubset
+
+
+
+
+
+
+
+
+
+
+####

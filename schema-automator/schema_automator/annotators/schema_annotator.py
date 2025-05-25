@@ -205,5 +205,25 @@ def annotate_schema(schema: str, input: str, output: str, **args):
     else:
         print(yaml.safe_dump(sd, sort_keys=False))
 
+
+
+__all__ = sorted(
+    [
+        getattr(v, "__name__", k)
+        for k, v in list(globals().items())  # export
+        if (
+            (
+                callable(v)
+                and getattr(v, "__module__", "")
+                == __name__  # callables from this module
+                or k.isupper()
+            )
+            and not str(getattr(v, "__name__", k)).startswith("__")  # or CONSTANTS
+        )
+    ]
+)  # neither marked internal
+
+
+
 if __name__ == '__main__':
     annotate_schema()

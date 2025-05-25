@@ -66,8 +66,10 @@ prefixes:
   owl:
     prefix_prefix: owl
     prefix_reference: http://www.w3.org/2002/07/owl#
+
 default_prefix: rda
 default_range: string
+
 slots:
   description:
     name: description
@@ -738,6 +740,7 @@ slots:
     description: A flag to signal that the publication is accessible for free.
     from_schema: rda
     range: boolean
+
 classes:
   Thing:
     name: Thing

@@ -64,7 +64,6 @@ classes:
       - publisher
       - keywords
       - issued
-#      - modified
       - created_by
       - created_on
       - compression
@@ -290,7 +289,6 @@ slots:
 # Enumerations                     #
 # ==================================
 enums:
-
   TestRole:
     permissible_values:
       Example:

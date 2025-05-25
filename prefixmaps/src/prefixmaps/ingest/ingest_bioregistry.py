@@ -86,3 +86,22 @@ def from_bioregistry(upper=False, canonical_idorg=True, filter_dubious=True) -> 
             for s in record.uri_prefix_synonyms:
                 context.add_prefix(record.prefix, s, preferred=preferred)
     return context
+
+
+__all__ = sorted(
+    [
+        getattr(v, "__name__", k)
+        for k, v in list(globals().items())  # export
+        if (
+            (
+                callable(v)
+                and getattr(v, "__module__", "")
+                == __name__  # callables from this module
+                or k.isupper()
+            )
+            and not str(getattr(v, "__name__", k)).startswith("__")  # or CONSTANTS
+        )
+    ]
+)  # neither marked internal
+
+

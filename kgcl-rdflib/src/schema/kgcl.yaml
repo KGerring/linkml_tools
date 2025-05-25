@@ -27,14 +27,12 @@ imports:
   - prov
 
 types:
-
   change class type:
     typeof: uriorcurie
     description: >-
       CURIE for a class within this datamodel. E.g. kgcl:NodeObsoletion
   
 classes:
-
   change:
     abstract: true
     description: >-
@@ -184,8 +182,6 @@ classes:
 
   datatype change:
     is_a: datatype or language tag change
-
-
 
   allows automatic replacement of edges:
     is_a: obsoletion
@@ -774,7 +770,6 @@ classes:
       - activity set
       
 slots:
-
   type:
     designates_type: true
     slot_uri: rdf:type

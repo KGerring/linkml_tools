@@ -113,7 +113,26 @@ def rdf2model(rdffile, dir, **args):
     schema = sie.convert(rdffile, dir=dir, format='ttl')
     write_schema(schema)
 
+__all__ = sorted(
+    [
+        getattr(v, "__name__", k)
+        for k, v in list(globals().items())  # export
+        if (
+            (
+                callable(v)
+                and getattr(v, "__module__", "")
+                == __name__  # callables from this module
+                or k.isupper()
+            )
+            and not str(getattr(v, "__name__", k)).startswith("__")  # or CONSTANTS
+        )
+    ]
+)  # neither marked internal
+
+
 if __name__ == '__main__':
     rdf2model()
+
+
 
 

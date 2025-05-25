@@ -1,0 +1,28 @@
+recursive-include test *
+exclude bin/run-tests
+exclude docs/NeuronLangExample.ipynb
+exclude .coveragerc
+exclude .gitignore
+exclude .travis.yml
+exclude MANIFEST.in
+exclude *.rkt
+exclude *.csv
+exclude *.json
+exclude *.yaml
+recursive-exclude ttlser *
+recursive-exclude neurondm *
+recursive-exclude nifstd *
+recursive-exclude htmlfn *
+recursive-exclude librdflib *
+recursive-exclude export *
+recursive-exclude ilxutils *
+recursive-exclude clifn *
+recursive-exclude .pytest_cache *
+recursive-exclude * *.pyc
+recursive-exclude * *.swp
+recursive-exclude * *.swo
+
+include nifstd/scigraph/curie_map.yaml
+include nifstd/scigraph/graphload-base-template.yaml
+include ttlser/test/evil.ttl
+include ttlser/test/nasty.ttl

@@ -207,7 +207,7 @@ DEFAULT_VALIDATION_TYPES = [
 ]
 
 
-class SSSOMSchemaView(object):
+class SSSOMSchemaView:
     """
     SchemaView class from linkml which is instantiated when necessary.
 
@@ -316,3 +316,24 @@ def get_default_metadata() -> MetadataType:
         "mapping_set_id": generate_mapping_set_id(),
         "license": DEFAULT_LICENSE,
     }
+
+
+
+__all__ = sorted(
+    [
+        getattr(v, "__name__", k)
+        for k, v in list(globals().items())  # export
+        if (
+            (
+                callable(v)
+                and getattr(v, "__module__", "")
+                == __name__  # callables from this module
+                or k.isupper()
+            )
+            and not str(getattr(v, "__name__", k)).startswith("__")  # or CONSTANTS
+        )
+    ]
+)  # neither marked internal
+
+
+

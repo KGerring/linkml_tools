@@ -1,0 +1,10 @@
+target/
+bin/
+semantic.cache
+tmp/
+venv/
+.DS_Store
+template/src/patterns/catalog-v001.xml
+.idea
+examples/phenotype-ontologies/zeco-odk-nico-curl.yaml
+examples/phenotype-ontologies/zeco-odk-nico.yaml

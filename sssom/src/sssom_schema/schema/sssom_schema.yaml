@@ -3,6 +3,7 @@ name: sssom
 description: Datamodel for Simple Standard for Sharing Ontological Mappings (SSSOM)
 imports:
 - linkml:types
+
 prefixes:
   dcterms: http://purl.org/dc/terms/
   linkml: https://w3id.org/linkml/
@@ -15,15 +16,21 @@ prefixes:
   skos: http://www.w3.org/2004/02/skos/core#
   xsd: http://www.w3.org/2001/XMLSchema#
   semapv: https://w3id.org/semapv/vocab/
+
 see_also:
 - https://github.com/mapping-commons/sssom
 - https://mapping-commons.github.io/sssom/home/
+
 default_curi_maps:
 - semweb_context
 - obo_context
+
 default_prefix: sssom
 default_range: string
 
+# ==================================
+# Enumerations                     #
+# ==================================
 enums:
   entity_type_enum:
     permissible_values:
@@ -58,8 +65,7 @@ enums:
         description: This value indicates that the entity ID does not represent a single entity, but a composite involving several individual entities. This value MUST NOT be used in the predicate_type slot. This specifications does not prescribe how an ID representing a composite entity should be interpreted; this is left at the discretion of applications.
         see_also:
         - https://github.com/mapping-commons/sssom/issues/402
-        - https://github.com/mapping-commons/sssom/blob/master/examples/schema/composite-entities.sssom.tsv
-        
+        - https://github.com/mapping-commons/sssom/blob/master/examples/schema/composite-entities.sssom.tsv        
   predicate_modifier_enum:
     permissible_values:
       Not: Negating the mapping predicate. The meaning of the triple becomes subject_id is not a predicate_id match to object_id.
@@ -72,6 +78,9 @@ enums:
       "0:1": None-to-one mapping
       "n:n": Many-to-many mapping
 
+# ==================================
+# Types                            #
+# ==================================      
 types:
  EntityReference:
     typeof: uriorcurie
@@ -82,6 +91,9 @@ types:
     see_also:
       - https://mapping-commons.github.io/sssom/spec/#tsv
 
+# ==================================
+# Slots                            #
+# ==================================
 slots:
   prefix_name:
     key: true
@@ -109,6 +121,7 @@ slots:
   local_name:
     description: The local name assigned to file that corresponds to the downloaded mapping set.
     range: string
+  
   mapping_set_references:
     description: A list of mapping set references.
     range: mapping set reference
@@ -140,6 +153,7 @@ slots:
     multivalued: true
     inlined_as_list: true
     recommended: true
+
   subject_id:
     description: The ID of the subject of the mapping.
     range: EntityReference
@@ -149,12 +163,14 @@ slots:
     examples:
       - value: HP:0009894
         description: The CURIE denoting the Human Phenotype Ontology concept of 'Thickened ears'
+
   subject_label:
     description: The label of subject of the mapping.
     range: string
     examples:
       - value: Thickened ears
     recommended: true
+
   subject_category:
     description: The conceptual category to which the subject belongs to. This can
       be a string denoting the category or a term from a controlled vocabulary.
@@ -174,6 +190,7 @@ slots:
         description: A string, rather than ID, describing the "anatomical entity" category. This is possible, but less preferred than using an ID.
       - value: biolink:Gene
         description: The CURIE of the biolink class for genes.
+  
   subject_type:
     description: The type of entity that is being mapped.
     range: entity_type_enum
@@ -182,6 +199,7 @@ slots:
       propagated: true
     examples:
       - value: owl:Class
+
   predicate_id:
     description: The ID of the predicate or relation that relates the subject and
       object of this match.
@@ -215,6 +233,7 @@ slots:
         description: Two terms are related in some way. The meaning is frequently consistent across a single set of mappings. Note this property is often overloaded even where the terms are of a different nature (e.g. interpro2go).
       - value: rdfs:seeAlso
         description: The subject and the object are associated in some unspecified way. The object IRI often resolves to a resource on the web that provides additional information.
+
   predicate_modifier:
     description: A modifier for negating the predicate. See https://github.com/mapping-commons/sssom/issues/40 for discussion
     range: predicate_modifier_enum
@@ -223,12 +242,14 @@ slots:
     examples:
       - value: Not
         description: Negates the predicate, see documentation of predicate_modifier_enum
+
   predicate_label:
     description: The label of the predicate/relation of the mapping.
     range: string
     examples:
       - value: has cross-reference
         description: The label of the oboInOwl:hasDbXref property to represent cross-references.
+
   predicate_type:
     description: The type of the predicate used to map the subject and object entities.
     range: entity_type_enum
@@ -241,6 +262,7 @@ slots:
     examples:
       - value: owl:AnnotationProperty
       - value: owl:ObjectProperty
+
   object_id:
     description: The ID of the object of the mapping.
     mappings:
@@ -250,12 +272,14 @@ slots:
     examples:
       - value: HP:0009894
         description: The CURIE denoting the Human Phenotype Ontology concept of 'Thickened ears'.
+
   object_label:
     description: The label of object of the mapping.
     range: string
     examples:
       - value: Thickened ears
     recommended: true
+
   object_category:
     description: The conceptual category to which the subject belongs to. This can
       be a string denoting the category or a term from a controlled vocabulary.
@@ -275,6 +299,7 @@ slots:
         description: A string, rather than ID, describing the "anatomical entity" category. This is possible, but less preferred than using an ID.
       - value: biolink:Gene
         description: The CURIE of the biolink class for genes.
+  
   mapping_justification:
     description: A mapping justification is an action (or the written representation of that action) of showing a mapping to be right or reasonable.
     range: EntityReference
@@ -300,6 +325,7 @@ slots:
     see_also:
       - https://mapping-commons.github.io/semantic-mapping-vocabulary/
       - https://www.ebi.ac.uk/ols4/ontologies/semapv
+  
   object_type:
     description: The type of entity that is being mapped.
     range: entity_type_enum
@@ -308,6 +334,7 @@ slots:
       propagated: true
     examples:
       - value: owl:Class
+
   mapping_set_id:
     description: A globally unique identifier for the mapping set (not each individual
       mapping). Should be IRI, ideally resolvable.
@@ -316,6 +343,7 @@ slots:
     examples:
       - value: http://purl.obolibrary.org/obo/mondo/mappings/mondo_exactmatch_ncit.sssom.tsv
         description: A persistent URI pointing to the latest version of the Mondo - NCIT mapping in the Mondo namespace.
+
   mapping_set_version:
     description: A version string for the mapping.
     range: string
@@ -325,21 +353,25 @@ slots:
         description: A date-based version that indicates that the mapping was published on the 1st January in 2021.
       - value: "1.2.1"
         description: "(A semantic version tag that indicates that this is the 1st major, 2nd minor version, patch 1 (https://semver.org/).)"
+
   mapping_set_group:
     description: Set by the owners of the mapping registry. A way to group related mapping sets for example for UI purposes.
     range: string
+
   mapping_set_title:
     description: The display name of a mapping set.
     range: string
     slot_uri: dcterms:title
     examples:
       - value: "The Mondo-OMIM mappings by Monarch Initiative."
+
   mapping_set_description:
     description: A description of the mapping set.
     range: string
     slot_uri: dcterms:description
     examples:
       - value: "This mapping set was produced to integrate human and mouse phenotype data at the IMPC. It is primarily used for making mouse phenotypes searchable by human synonyms at https://mousephenotype.org/."
+  
   creator_id:
     description: Identifies the persons or groups responsible for the creation of
       the mapping. The creator is the agent that put the mapping in its published form, 
@@ -355,6 +387,7 @@ slots:
         description: The ORCID of the (multiple) creators of the mapping.
       - value: orcid:0000-0002-7356-1779
         description: The ORCID of the creator of the mapping.
+
   creator_label:
     description: A string identifying the creator of this mapping. In the spirit of
       provenance, consider using creator_id instead.
@@ -365,6 +398,7 @@ slots:
         description: The human-readable names of the (multiple) creators of the mapping.
       - value: Nicolas Matentzoglu
         description: The human-readable name of the creator of the mapping.
+
   author_id:
     description: Identifies the persons or groups responsible for asserting the mappings.
       Recommended to be a list of ORCIDs or otherwise
@@ -377,6 +411,7 @@ slots:
         description: The ORCID of the (multiple) authors of the mapping.
       - value: orcid:0000-0002-7356-1779
         description: The ORCID of the author of the mapping.
+
   author_label:
     description: A string identifying the author of this mapping. In the spirit of
       provenance, consider using author_id instead.
@@ -387,6 +422,7 @@ slots:
         description: The human-readable names of the (multiple) authors of the mapping.
       - value: Nicolas Matentzoglu
         description: The human-readable name of the author of the mapping.
+
   reviewer_id:
     description: Identifies the persons or groups that reviewed and confirmed the mapping.
       Recommended to be a list of ORCIDs or otherwise
@@ -398,6 +434,7 @@ slots:
         description: The ORCID of the (multiple) reviewers of the mapping.
       - value: orcid:0000-0002-7356-1779
         description: The ORCID of the reviewer of the mapping.
+
   reviewer_label:
     description: A string identifying the reviewer of this mapping. In the spirit of
       provenance, consider using reviewer_id instead.
@@ -416,6 +453,7 @@ slots:
     examples:
       - value: https://creativecommons.org/licenses/by/4.0/
         description: The URI of the Creative Commons Attribution 4.0 International license.
+
   subject_source:
     description: URI of vocabulary or identifier source for the subject.
     range: EntityReference
@@ -427,6 +465,7 @@ slots:
         description: A persistent OBO CURIE pointing to the latest version of the Mondo ontology.
       - value: wikidata:Q7876491
         description: A Wikidata identifier for the Uberon ontology resource.
+
   subject_source_version:
     description: Version IRI or version string of the source of the subject term.
     range: string
@@ -436,6 +475,7 @@ slots:
     examples:
       - value: http://purl.obolibrary.org/obo/mondo/releases/2021-01-30/mondo.owl
         description: A persistent Version IRI pointing to the Mondo version '2021-01-30'
+
   object_source:
     description: URI of vocabulary or identifier source for the object.
     range: EntityReference
@@ -447,6 +487,7 @@ slots:
         description: A persistent OBO CURIE pointing to the latest version of the Mondo ontology.
       - value: wikidata:Q7876491
         description: A Wikidata identifier for the Uberon ontology resource.
+
   object_source_version:
     description: Version IRI or version string of the source of the object term.
     range: string
@@ -456,6 +497,7 @@ slots:
     examples:
       - value: http://purl.obolibrary.org/obo/mondo/releases/2021-01-30/mondo.owl
         description: A persistent Version IRI pointing to the Mondo version '2021-01-30'
+
   mapping_provider:
     description: URL pointing to the source that provided the mapping, for example
       an ontology that already contains the mappings, or a database from which it was derived.
@@ -468,6 +510,7 @@ slots:
         description: A URL pointing to the Observational Health Data Sciences and Informatics initiative.
       - value: https://monarchinitiative.org/
         description: A URL pointing to the Monarch Initiative Resource.
+
   mapping_set_source:
     description: A mapping set or set of mapping set that was used to derive the mapping set.
     slot_uri: prov:wasDerivedFrom
@@ -476,6 +519,7 @@ slots:
     examples:
       - value: http://purl.obolibrary.org/obo/mondo/mappings/2022-05-20/mondo_exactmatch_ncit.sssom.tsv
         description: A persistent, ideally versioned, link to the mapping set from which the current mapping set is derived.
+
   mapping_source:
     description: The mapping set this mapping was originally defined in. mapping_source is used for example when merging multiple
       mapping sets or deriving one mapping set from another.
@@ -483,6 +527,7 @@ slots:
     examples:
       - value: MONDO_MAPPINGS:mondo_exactmatch_ncit.sssom.tsv
         description: A reference to the mapping set that originally contained this mapping.
+
   mapping_cardinality:
     description: A string indicating whether this mapping is from a 1:1 (the subject_id
       maps to a single object_id), 1:n (the subject maps to more than one object_id), 
@@ -494,6 +539,7 @@ slots:
         description: A one-to-one mapping.
       - value: "1:n"
         description: A one-to-many mapping.
+
   mapping_tool:
     description: A reference to the tool or algorithm that was used to generate the
       mapping. Should be a URL pointing to more info about it, but can be free text.
@@ -506,6 +552,7 @@ slots:
         description: A URL pointing to the AgreementMakerLight project.
       - value: AgreementMakerLight
         description: A string (name) denoting the AgreementMakerLight project.
+
   mapping_tool_version:
     description: Version string that denotes the version of the mapping tool used.
     range: string
@@ -538,6 +585,7 @@ slots:
     examples:
       - value: 0.95
         description: A confidence score of 0.95, indicating 95% confidence.
+
   subject_match_field:
     description: >
       A list of properties, annotations or attributes related to the subject that was used
@@ -557,6 +605,7 @@ slots:
     see_also:
       - https://mapping-commons.github.io/sssom/mapping-justifications/#lexical-matching
       - https://github.com/mapping-commons/sssom/issues/413
+
   object_match_field:
     description: >
       A list of properties, annotations or attributes related to the object that was used
@@ -576,6 +625,7 @@ slots:
     see_also:
       - https://mapping-commons.github.io/sssom/mapping-justifications/#lexical-matching
       - https://github.com/mapping-commons/sssom/issues/413
+
   match_string:
     description: String that is shared by subj/obj. It is recommended to indicate the 
       fields for the match using the object and subject_match_field slots.
@@ -584,6 +634,7 @@ slots:
     examples:
       - value: "gala"
         description: "The 'gala' string was matched for both subject and object."
+
   subject_preprocessing:
     description: Method of preprocessing applied to the fields of the subject. 
       If different preprocessing steps were performed on different fields, it is
@@ -596,6 +647,7 @@ slots:
     examples:
       - value: semapv:Stemming
       - value: semapv:StopWordRemoval
+
   object_preprocessing:
     description: Method of preprocessing applied to the fields of the object. 
       If different preprocessing steps were performed on different fields, it is
@@ -608,6 +660,7 @@ slots:
     examples:
       - value: semapv:Stemming
       - value: semapv:StopWordRemoval
+
   curation_rule:
     description: A curation rule is a (potentially) complex condition executed by an agent that led to the establishment of a mapping. 
       Curation rules often involve complex domain-specific considerations, which are hard to capture in an automated fashion. The curation
@@ -622,6 +675,7 @@ slots:
       - https://github.com/mapping-commons/sssom/issues/166
       - https://github.com/mapping-commons/sssom/pull/258
       - https://github.com/mapping-commons/sssom/blob/master/examples/schema/curation_rule.sssom.tsv
+
   curation_rule_text:
     description: A curation rule is a (potentially) complex condition executed by an agent that led to the establishment of a mapping. 
       Curation rules often involve complex domain-specific considerations, which are hard to capture in an automated fashion. The curation
@@ -637,6 +691,7 @@ slots:
       - https://github.com/mapping-commons/sssom/issues/166
       - https://github.com/mapping-commons/sssom/pull/258
       - https://github.com/mapping-commons/sssom/blob/master/examples/schema/curation_rule_text.sssom.tsv
+
   similarity_score:
     description: A score between 0 and 1 to denote the similarity between two entities, where
       1 denotes equivalence, and 0 denotes disjointness. The score is meant to be used in conjunction 
@@ -652,6 +707,7 @@ slots:
       - https://github.com/mapping-commons/sssom/issues/385
       - https://github.com/mapping-commons/sssom/pull/386
       - https://github.com/mapping-commons/sssom/blob/master/examples/schema/similarity_score.sssom.tsv
+
   similarity_measure:
     description: The measure used for computing a similarity score.
       This field is meant to be used in conjunction with the similarity_score field, to document,
@@ -673,6 +729,7 @@ slots:
       - https://github.com/mapping-commons/sssom/issues/385
       - https://github.com/mapping-commons/sssom/pull/386
       - https://github.com/mapping-commons/sssom/blob/master/examples/schema/similarity_score.sssom.tsv
+
   issue_tracker_item:
     description: The issue tracker item discussing this mapping.
     range: EntityReference
@@ -683,6 +740,7 @@ slots:
       - https://github.com/mapping-commons/sssom/issues/78
       - https://github.com/mapping-commons/sssom/pull/259
       - https://github.com/mapping-commons/sssom/blob/master/examples/schema/issue_tracker_item.sssom.tsv
+
   issue_tracker:
     description: A URL location of the issue tracker for this entity.
     range: uri
@@ -693,6 +751,7 @@ slots:
       - https://github.com/mapping-commons/sssom/issues/78
       - https://github.com/mapping-commons/sssom/pull/259
       - https://github.com/mapping-commons/sssom/blob/master/examples/schema/issue_tracker.sssom.tsv
+
   see_also:
     description: A URL specific for the mapping instance. E.g. for kboom we have a
       per-mapping image that shows surrounding axioms that drive probability. Could
@@ -721,6 +780,7 @@ slots:
       - value: This mapping is weird in that the hierarchical position of the two terms
           is very different.
         description: A comment explaining a mapping authors reservation on a mapping.
+
   extension_definitions:
     description: A list that defines the extension slots used in the mapping set.
     range: extension definition
@@ -728,6 +788,10 @@ slots:
     see_also:
       - https://github.com/mapping-commons/sssom/issues/328
       - https://github.com/mapping-commons/sssom/blob/master/examples/schema/extension-slots.sssom.tsv
+
+# ==================================
+# Classes                          #
+# ==================================
 classes:
   mapping set:
     description: Represents a set of mappings.
@@ -912,4 +976,8 @@ classes:
     see_also:
       - https://github.com/mapping-commons/sssom/issues/28
       - https://github.com/mapping-commons/sssom/blob/master/examples/schema/no_term_found.sssom.tsv
+
+
+
+# ==================================
 

@@ -5,6 +5,7 @@ imports:
 prefixes:
   dosdp: https://w3id.org/linkml/dosdp/
   linkml: https://w3id.org/linkml/
+  
 default_prefix: dosdp
 
 # ---------
@@ -12,7 +13,6 @@ default_prefix: dosdp
 # ---------
 
 classes:
-
   Pattern:
     tree_root: true
     slots:
@@ -579,6 +579,7 @@ slots:
     range: PrintfAnnotationObo
     multivalued: true
   instance_graph: {}
+
 
 enums:
   axiom_type_options:

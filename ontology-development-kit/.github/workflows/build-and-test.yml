@@ -1,0 +1,40 @@
+name: Build the ODK images and run the tests
+
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - synchronize
+    paths-ignore:
+      - '**.md'
+      - 'CITATION.cff'
+      - 'LICENSE'
+      - 'docs/**'
+      - 'mkdocs.yml'
+      - 'INSTALL.sh'
+      - 'env.sh'
+      - 'odk.sh'
+      - 'odk2.sh'
+      - 'seed-via-docker-131.sh'
+      - '*.bat'
+      - 'upgrade*sh'
+      - '.github/workflows/build-multiarch.yml'
+      - '.github/workflows/docs.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+      - name: Create dummy Git user name
+        run: git config --global user.name Alice
+      - name: Create dummy Git user email
+        run: git config --global user.email alice@example.org
+      - name: Build the images
+        run: make build
+      - name: Run the tests
+        run: make test-full

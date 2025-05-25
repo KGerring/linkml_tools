@@ -2,10 +2,13 @@ name: cadsr
 id: https://example.org/cadsr
 imports:
 - linkml:types
+
 prefixes:
   cadsr: https://example.org/cadsr
   linkml: https://w3id.org/linkml/
+
 default_prefix: cadsr
+
 slots:
   publicId:
     description: The unique identifier for an Administered Item within a Registration
@@ -221,6 +224,7 @@ slots:
     description: The particular day, month and year this item became allowed.
   End Date:
     description: The day, month and year this item becomes no longer allowed.
+
 classes:
   DataElementContainer:
     slots:

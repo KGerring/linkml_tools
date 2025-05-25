@@ -823,6 +823,21 @@ def convert(tsv_files, gsheet_id, gsheet_cache_dir, output: TextIO, name, repair
     schema_dict = schema_as_dict(schema)
     output.write(yaml.dump(schema_dict, sort_keys=sort_keys))
 
+__all__ = sorted(
+    [
+        getattr(v, "__name__", k)
+        for k, v in list(globals().items())  # export
+        if (
+            (
+                callable(v)
+                and getattr(v, "__module__", "")
+                == __name__  # callables from this module
+                or k.isupper()
+            )
+            and not str(getattr(v, "__name__", k)).startswith("__")  # or CONSTANTS
+        )
+    ]
+)  # neither marked internal
 
 if __name__ == '__main__':
     convert()

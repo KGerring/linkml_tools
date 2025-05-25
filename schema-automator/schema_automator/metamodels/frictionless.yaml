@@ -7,6 +7,7 @@ prefixes:
   linkml: https://w3id.org/linkml/
   frictionless: https://w3id.org/linkml/frictionless/
 default_prefix: frictionless
+
 enums:
   type_enum:
     permissible_values:
@@ -34,6 +35,7 @@ enums:
     permissible_values:
       tabular-data-resource:
       tabular-data-package:
+
 slots:
   delimiter:
     range: string
@@ -135,6 +137,7 @@ slots:
     range: Resource
     inlined: true
     inlined_as_list: true
+
 classes:
   Any:
     class_uri: linkml:Any

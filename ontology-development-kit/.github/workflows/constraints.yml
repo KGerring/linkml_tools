@@ -1,0 +1,30 @@
+name: Update python constraints
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 13 * * 1"
+jobs:
+  constraints:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+    steps:
+      - name: Check Docker version
+        # This is to fail early in case docker is not available on the base image..
+        run: docker --version
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+      - name: Build constraints.txt
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace ubuntu:24.04 \
+          sh update-constraints.sh --in-docker
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        if: ${{ success() }}
+        with:
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+          commit-message: Update constraints.txt
+          title: 'Update constraints.txt'
+          body: |
+            This pull request updates constraints.txt. Make sure you run make tests manually.
+          assignees: matentzn

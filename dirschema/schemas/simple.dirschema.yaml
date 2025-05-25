@@ -1,0 +1,15 @@
+matchStart: -1
+anyOf:
+  - match: "[^.]*"
+    type: "dir"
+  - match: ".*\\.(txt|md)"
+  - match: ".*\\.jpg"
+    type: "file"
+    validMeta: { "$ref": "local://text.schema.yaml" }
+  - match: "(.*)\\.dat"
+    type: file
+    rewrite: \1_extra
+    next:
+      allOf:
+        - type: dir
+        - validMeta: { "$ref": "local://text.schema.yaml" }

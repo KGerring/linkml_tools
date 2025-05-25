@@ -23,7 +23,6 @@ classes:
     description: An unconstrained type or object
 
 types:
-
   any_number:
     description: A number of any type
     union_of:

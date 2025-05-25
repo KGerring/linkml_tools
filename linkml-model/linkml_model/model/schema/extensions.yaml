@@ -41,7 +41,6 @@ slots:
 
 
 classes:
-
   AnyValue:
     class_uri: linkml:Any
 

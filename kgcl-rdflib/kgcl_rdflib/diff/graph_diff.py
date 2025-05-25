@@ -121,6 +121,24 @@ def get_deleted_triple_annotations(g1, g2):
     return annotations1 - annotations2
 
 
+__all__ = sorted(
+    [
+        getattr(v, "__name__", k)
+        for k, v in list(globals().items())  # export
+        if (
+            (
+                callable(v)
+                and getattr(v, "__module__", "")
+                == __name__  # callables from this module
+                or k.isupper()
+            )
+            and not str(getattr(v, "__name__", k)).startswith("__")  # or CONSTANTS
+        )
+    ]
+)  # neither marked internal
+
+
+
 if __name__ == "__main__":
     g1 = rdflib.Graph()
     g2 = rdflib.Graph()

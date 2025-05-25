@@ -16,7 +16,9 @@ prefixes:
   linkml: https://w3id.org/linkml/
   schemasheets: https://w3id.org/linkml/configschema/
   carvoc: https://w3id.org/carvoc/
+
 default_prefix: schemasheets
+
 imports:
   - linkml:types
 see_also:
@@ -83,6 +85,7 @@ classes:
     slots:
       - map_key
       - map_value
+
 slots:
   map_key:
     key: true
@@ -290,3 +293,5 @@ enums:
       subset:
         meaning: linkml:EnumDefinition
         description: The column is populated with subset names
+
+

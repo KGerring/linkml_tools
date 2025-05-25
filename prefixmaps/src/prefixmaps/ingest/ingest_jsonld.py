@@ -112,3 +112,22 @@ def from_prefixcc() -> Context:
     :return:
     """
     return from_jsonld_context_url("http://prefix.cc/context.jsonld", "prefixcc", PREFIXCC_EXCLUDE)
+
+
+
+
+__all__ = sorted(
+    [
+        getattr(v, "__name__", k)
+        for k, v in list(globals().items())  # export
+        if (
+            (
+                callable(v)
+                and getattr(v, "__module__", "")
+                == __name__  # callables from this module
+                or k.isupper()
+            )
+            and not str(getattr(v, "__name__", k)).startswith("__")  # or CONSTANTS
+        )
+    ]
+)  # neither marked internal

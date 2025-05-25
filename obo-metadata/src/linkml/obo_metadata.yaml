@@ -53,9 +53,6 @@ subsets:
   
 classes:
 
-  #GOStyleTermProfile:
-  #  slots:
-
   Any:
     class_uri: linkml:Any
   
@@ -91,7 +88,6 @@ classes:
     - IEDB_alternative_term
     - editor_preferred_term
     - OBO_foundry_unique_label
-
 
   HasMappings:
     mixin: true
@@ -253,12 +249,10 @@ classes:
       - HasProvenance
       - HasMappings
       - HasCategory
-#      - HasHistory
       - HasUserInformation
       - HasMinimalMetadata
     abstract: true
-
-        
+   
   Class:
     aliases:
       - term
@@ -406,7 +400,6 @@ classes:
     - someValuesFrom
     - allValuesFrom
     
-  ## MIXINS
   Expression:
     mixin: true
     
@@ -457,7 +450,6 @@ classes:
 
 slots:
 
-  # core
   core_property:
     abstract: true
     description: abstract grouping of core properties
@@ -484,8 +476,7 @@ slots:
       - SHOULD follow OBO label guidelines
       - MUST be unique within an ontology
       - SHOULD be unique across OBO
-
-      
+ 
   definition:
     is_a: core_property
     slot_uri: IAO:0000115
@@ -526,11 +517,13 @@ slots:
     slot_uri: skos:exactMatch
     multivalued: true
     range: Thing
+
   narrowMatch:
     is_a: match
     slot_uri: skos:narrowMatch
     multivalued: true
     range: Thing
+
   database_cross_reference:
     is_a: match
     slot_uri: oio:hasDbXref
@@ -570,17 +563,21 @@ slots:
     multivalued: true
     in_subset:
       - allotrope permitted profile  ## allotrope uses skos
+
   has_curation_status:
     is_a: informative_property
     slot_uri: IAO:0000114
+
   defaultLanguage:
     is_a: informative_property
     slot_uri: protege:defaultLanguage
+
   has_ontology_root_term:
     is_a: informative_property
     slot_uri: IAO:0000700
     multivalued: true
     range: Class
+
   # patterns
   conformsTo:
     is_a: informative_property
@@ -632,6 +629,7 @@ slots:
       - allotrope permitted profile
       - go permitted profile
       - obi permitted profile
+
   term_replaced_by:
     is_a: obsoletion_related_property
     slot_uri: IAO:0100001
@@ -644,6 +642,7 @@ slots:
       - go permitted profile
       - obi permitted profile
       - allotrope permitted profile ## allotrope uses skos
+      
   has_obsolescence_reason:
     is_a: obsoletion_related_property
     slot_uri: IAO:0000231
@@ -673,10 +672,12 @@ slots:
   temporal_interpretation:
     slot_uri: RO:0001900
     range: NamedIndividual
+
   never_in_taxon:
     slot_uri: RO:0002161
     multivalued: true
     range: Class
+
   is_a_defining_property_chain_axiom:
     slot_uri: RO:0002581
   is_a_defining_property_chain_axiom_where_second_argument_is_reflexive:
@@ -735,15 +736,18 @@ slots:
   date_retrieved:
     is_a: provenance_property
     slot_uri: oio:date_retrieved
+
   editor_note:
     is_a: provenance_property
     slot_uri: IAO:0000116
     multivalued: true
     range: narrative text
+
   term_editor:
     is_a: provenance_property
     slot_uri: IAO:0000117
     multivalued: true
+
   definition_source:
     is_a: provenance_property
     slot_uri: IAO:0000119
@@ -824,12 +828,15 @@ slots:
       - skos:altLabel
     in_subset:
       - allotrope permitted profile  ## allotrope uses skos
+
   ISA_alternative_term:
     is_a: alternative_term
     slot_uri: OBI:0001847
+
   IEDB_alternative_term:
     is_a: alternative_term
     slot_uri: OBI:9991118
+
   OBO_foundry_unique_label:
     is_a: alternative_term
     slot_uri: IAO:0000589
@@ -849,6 +856,7 @@ slots:
       - obi permitted profile
     slot_uri: IAO:0000111
     multivalued: true
+
   has_exact_synonym:
     is_a: synonym
     slot_uri: oio:hasExactSynonym
@@ -1141,7 +1149,6 @@ slots:
     deprecated: use OMO over NCIT
     deprecated_element_has_exact_replacement: isDefinedBy
     
-
 types:
   iri type:
     typeof: uriorcurie
@@ -1174,3 +1181,9 @@ types:
       A string that provides a human-readable description of something
 
   
+
+
+
+
+
+
